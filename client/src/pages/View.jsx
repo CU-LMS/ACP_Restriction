@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 import useHasFocus from '../hooks/useHasFocus'
 import { Spin } from 'antd'
-import { BASE_URL, FALLBACK_URL } from '../../requestMethods'
+import { BASE_URL, FALLBACK_URL,PRODUCTION_FALLBACK_URL } from '../../requestMethods'
 
 const getAssetUrlNew = (mimetype, url) => {
   let appendUrl = ''
@@ -116,7 +116,7 @@ const View = () => {
       <Spin tip="loading..." spinning={loading} size='large'>
         <Container >
           <Wrapper isfocus={!focus} >
-            <Blocker src={`${FALLBACK_URL}/upload/assets/cu-logo-vertical.png`} onDragStart={handleDragStart} crossOrigin=''/>
+            <Blocker src={`${PRODUCTION_FALLBACK_URL}/upload/assets/cu-logo-vertical.png`} onDragStart={handleDragStart} crossOrigin=''/>
             <Image src={fileInfo.location} onDragStart={handleDragStart} onLoad={handleLoadYetAnother}/>
           </Wrapper>
         </Container>
@@ -127,7 +127,7 @@ const View = () => {
       <Spin tip="loading..." spinning={loading} size='large'>
         <Container >
           <Wrapper isfocus={!focus} >
-            <Blocker src={`${FALLBACK_URL}/upload/assets/cu-logo-vertical.png`} onDragStart={handleDragStart} crossOrigin=''/>
+            <Blocker src={`${PRODUCTION_FALLBACK_URL}/upload/assets/cu-logo-vertical.png`} onDragStart={handleDragStart} crossOrigin=''/>
             <Frame src={url} id='iframeji' ref={iframeRef} onLoad={handleLoadcompleteIframe} />
           </Wrapper>
         </Container>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { FALLBACK_URL, publicRequest } from '../../requestMethods'
+import { FALLBACK_URL, publicRequest,PRODUCTION_FALLBACK_URL } from '../../requestMethods'
 
 const Container = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -41,7 +41,7 @@ const Para = styled.p`
   font-size: 12px;
   text-overflow: 'hidden';
 `
-const assetUrl = `${FALLBACK_URL}/upload`
+const assetUrl = `${PRODUCTION_FALLBACK_URL}/upload`
 const getFallbackUrl = (mimetype)=>{
   let url=''
   switch (mimetype) {

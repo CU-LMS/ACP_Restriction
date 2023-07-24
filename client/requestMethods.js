@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const BASE_URL = "http://localhost:8800/api"
-export const PRODUCTION_URL= ""
+export const PRODUCTION_URL= "https://acpapi.idolcu.in/api"
 export const FALLBACK_URL= "http://localhost:8800"
-export const PRODUCTION_FALLBACK_URL= ""
+export const PRODUCTION_FALLBACK_URL= "https://acpapi.idolcu.in:8800"
 
 let TOKEN;
 const getToken = ()=>{
