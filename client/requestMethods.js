@@ -3,7 +3,7 @@ import axios from "axios";
 export const BASE_URL = "http://localhost:8800/api"
 export const PRODUCTION_URL= "https://acpapi.idolcu.in/api"
 export const FALLBACK_URL= "http://localhost:8800"
-export const PRODUCTION_FALLBACK_URL= "https://acpapi.idolcu.in:8800"
+export const PRODUCTION_FALLBACK_URL= "https://acpapi.idolcu.in:8802"
 
 let TOKEN;
 const getToken = ()=>{
@@ -14,9 +14,9 @@ const getToken = ()=>{
 getToken()
 
 export const publicRequest = axios.create({
-    baseURL: BASE_URL
+    baseURL: PRODUCTION_URL
 })
 export const userRequest = axios.create({
-    baseURL: BASE_URL,
+    baseURL: PRODUCTION_URL,
     headers: {token: `Bearer ${TOKEN}`}
 })

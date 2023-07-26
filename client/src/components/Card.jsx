@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { FALLBACK_URL, publicRequest,PRODUCTION_FALLBACK_URL } from '../../requestMethods'
+import { FALLBACK_URL, publicRequest,PRODUCTION_FALLBACK_URL, userRequest } from '../../requestMethods'
+import { AuthContext } from '../context/authContext'
+import {DeleteOutlined} from '@ant-design/icons'
 
+const OuterContainer = styled.div`
+  text-align: center;
+  /* background-color: green; */
+  margin: 20px;
+`
 const Container = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -70,19 +77,24 @@ const getFallbackUrl = (mimetype)=>{
   }
   return url
 }
-const Card = ({fileInfo}) => {
+const Card = ({fileInfo,handleDelete}) => {
   const url = getFallbackUrl(fileInfo.mimetype)
   const navigate = useNavigate()
   const handleCardClick = ()=>{
     navigate("/view",{state: fileInfo})
   }
+  const {user} = useContext(AuthContext)
+  
   return (
-    <Container onClick={()=>handleCardClick()}>
+    <OuterContainer>
+    <Container onClick={handleCardClick}>
       <Image src={`${assetUrl}/fallback/${url}`} alt='Avatar' crossOrigin=''/>
       <InnerContainer>
       <Para>{fileInfo?.originalname}</Para>
       </InnerContainer>
     </Container>
+    {user?.isAdmin == true?<button style={{padding: '12px',cursor: 'pointer', width: '70%', backgroundColor: 'red', marginBottom: '5px', borderRadius: '4px', border: 'none'}} onClick={()=>handleDelete(fileInfo)}><DeleteOutlined style={{color: 'white', fontSize: '18px'}}/></button>: ''}
+    </OuterContainer>
   )
 }
 
